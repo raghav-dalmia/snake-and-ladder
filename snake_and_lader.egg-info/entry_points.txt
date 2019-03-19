@@ -1,0 +1,3 @@
+[console_scripts]
+snl = game:start
+

@@ -185,7 +185,7 @@ def start():
     pygame.quit()
     quit()
     sys.exit(0)
-start()
+
 
     
                 

@@ -35,12 +35,6 @@ def get_pos(player_pos,player):
     x_pos = int(player_pos%10)
     y_pos = int(floor(player_pos/10))
     pos = board_pos[y_pos][x_pos]
-    if player == 1:
-        pos[0] = pos[0] + 3
-        pos[1] = pos[1] + 3
-    else:
-        pos[0] = pos[0] + 6
-        pos[1] = pos[1] + 6
     return pos
 
 def start():
@@ -54,6 +48,12 @@ def start():
             else:
                 x = x - 56.4
             temp.append([x,y])
+
+        if(i%2==0):
+            x = x + 56.4
+        else:
+            x = x - 56.4
+        
         board_pos.append(temp)
     for i in board_pos:
         print(i)
@@ -65,8 +65,8 @@ def start():
     crashed = False
     board = pygame.image.load("./images/board.jpg")
     number = pygame.image.load("./images/dice/normal/1.png")
-    play1 = pygame.image.load("./images/pices/yellow.png")
-    play2 = pygame.image.load("./images/pices/green.png")
+    play1 = pygame.image.load("./images/pices/black.png")
+    play2 = pygame.image.load("./images/pices/yellow.png")
     board_rect = board.get_rect()
     myfont = pygame.font.SysFont('Comic Sans MS', 20)
     
@@ -104,6 +104,58 @@ def start():
                         pos[player] = 1
                     else:
                         pos[player] = pos[player] + num
+
+                    #opponent attack
+                    if(pos[player] == pos[3-player]):
+                        pos[3-player] = 0;
+
+                    #ladders
+                    if(pos[player] == 2):
+                        pos[player] = 38
+                    if(pos[player] == 7):
+                        pos[player] = 14
+                    if(pos[player] == 8):
+                        pos[player] = 31
+                    if(pos[player] == 15):
+                        pos[player] = 26
+                    if(pos[player] == 21):
+                        pos[player] = 42
+                    if(pos[player] == 28):
+                        pos[player] = 84
+                    if(pos[player] == 36):
+                        pos[player] = 44
+                    if(pos[player] == 51):
+                        pos[player] = 67
+                    if(pos[player] == 71):
+                        pos[player] = 91
+                    if(pos[player] == 78):
+                        pos[player] = 98
+                    if(pos[player] == 87):
+                        pos[player] = 94
+                    
+                    #snakes
+                    if(pos[player] == 16):
+                        pos[player] = 6
+                    if(pos[player] == 46):
+                        pos[player] = 25
+                    if(pos[player] == 49):
+                        pos[player] = 11
+                    if(pos[player] == 62):
+                        pos[player] = 19
+                    if(pos[player] == 64):
+                        pos[player] = 60
+                    if(pos[player] == 74):
+                        pos[player] = 53
+                    if(pos[player] == 89):
+                        pos[player] = 68
+                    if(pos[player] == 92):
+                        pos[player] = 88
+                    if(pos[player] == 95):
+                        pos[player] = 75
+                    if(pos[player] == 99):
+                        pos[player] = 80
+
+
                     player_pos[player] = get_pos(pos[player],player)
                     print("player " + str(player))
                     print("pos " + str(pos[player]))
@@ -133,6 +185,7 @@ def start():
     pygame.quit()
     quit()
     sys.exit(0)
-    
+
+
     
                 
